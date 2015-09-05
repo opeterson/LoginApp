@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<configuration name="defaultConfiguration" status="warn"
+	strict="true" monitorInterval="5">
+	<appenders>
+		<appender name="Console" type="Console" target="SYSTEM_OUT">
+			<layout type="PatternLayout" pattern="${log4j.patternlayout}" />
+		</appender>
+		<appender name="File" type="RollingFile" fileName="${log4j.filename}"
+			filePattern="${log4j.filenamePattern}" bufferedIO="true" immediateFlush="true"
+			append="true">
+			<layout type="PatternLayout" pattern="${log4j.patternlayout}" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="500 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="5" />
+		</appender>
+		<appender name="AsyncFile" type="Async" bufferSize="128">
+			<appender-ref ref="File" />
+		</appender>
+	</appenders>
+	<loggers>
+	   <logger name="org.springframework">
+      <appender-ref ref="Console" level="${log4j.springframework.console.level}"/>
+      <appender-ref ref="AsyncFile" level="${log4j.springframework.file.level}" />
+    </logger>
+    <logger name="ca.spotter">
+      <appender-ref ref="AsyncFile" level="${log4j.spotter.file.level}" />
+    </logger>
+		<root level="${log4j.root.console.level}">
+			<appender-ref ref="Console"  />
+		</root>
+	</loggers>
+</configuration>
