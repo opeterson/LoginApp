@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Login Page</title>
+<link href="<c:url value="/resources/styles/login/login.css" />" rel="stylesheet" type="text/css">
 </head>
 <body>
 <form:form commandName="loginForm" action="login" method="post">
