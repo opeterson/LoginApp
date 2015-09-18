@@ -39,7 +39,6 @@ public class LoginController {
 		logger.debug("LoginController: doLogin: User logged in with username: " + loginForm.getUsername());
 		logger.debug("LoginController: doLogin: User logged in with password: " + loginForm.getPassword());
 		ModelAndView view = new ModelAndView("views/login/success.jsp", "loginForm", loginForm);
-		//view.addObject("loginForm", loginForm);
 		logger.debug("LoginController: doLogin: End");
 		return view;
 	}
