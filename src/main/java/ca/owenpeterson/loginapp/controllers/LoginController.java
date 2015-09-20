@@ -18,6 +18,9 @@ import ca.owenpeterson.loginapp.models.LoginForm;
 public class LoginController {
 	
 	Logger logger = LogManager.getLogger(LoginController.class);
+	
+	private String SUCCESS = "views/login/success.jsp";
+	private String LOGIN = "views/login/login.jsp";
 
 	@ModelAttribute("loginForm")
 	public LoginForm getForm() {
@@ -35,7 +38,7 @@ public class LoginController {
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody ModelAndView getView(@ModelAttribute("errors") LoginError errors) {
 		logger.debug("LoginController: getView: Begin");
-		ModelAndView view = new ModelAndView("views/login/login.jsp", "errors", errors);
+		ModelAndView view = new ModelAndView(LOGIN, "errors", errors);
 		logger.debug("LoginController: getView: End");
 		return view;
 	}
@@ -53,10 +56,10 @@ public class LoginController {
 		if ("".equals(username) || "".equals(password)) {
 			errors.setCssClass("loginerror");
 			errors.setErrorMessage("Invalid Username or Password.");
-			view = new ModelAndView("views/login/login.jsp", "errors", errors);
+			view = new ModelAndView(LOGIN, "errors", errors);
 			logger.debug("LoginController: doLogin: Username or password was blank. Sending user to login.");
 		} else {
-			view = new ModelAndView("views/login/success.jsp", "loginForm", loginForm);
+			view = new ModelAndView(SUCCESS, "loginForm", loginForm);
 			logger.debug("LoginController: doLogin: Username or password entered. Sending user to success page.");
 		}		
 		
