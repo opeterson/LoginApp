@@ -11,6 +11,16 @@
 </head>
 <body>
 <form:form commandName="loginForm" action="login" method="post">
+	<div class="infomessage">
+		<c:choose>
+		    <c:when test="${null == errors.errorMessage}">
+		       <p>Please enter your Username and Password</p>
+		    </c:when>
+		    <c:otherwise>
+		        <p class=<c:out value="${errors.cssClass}"/>><c:out value="${errors.errorMessage}"/></p>
+		    </c:otherwise>
+	    </c:choose>
+	</div>
 	<div class="field">
 		<label for="username">Username: </label>
 		<form:input path="username" id="username" />

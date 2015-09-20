@@ -46,3 +46,7 @@ form {
 .formbutton input {
 	width: 75px;
 }
+
+.loginerror {
+	color: red;
+}

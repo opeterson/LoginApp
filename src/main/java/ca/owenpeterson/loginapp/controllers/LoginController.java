@@ -45,7 +45,21 @@ public class LoginController {
 		logger.debug("LoginController: doLogin: Begin");
 		logger.debug("LoginController: doLogin: User logged in with username: " + loginForm.getUsername());
 		logger.debug("LoginController: doLogin: User logged in with password: " + loginForm.getPassword());
-		ModelAndView view = new ModelAndView("views/login/success.jsp", "loginForm", loginForm);
+		
+		ModelAndView view = null;
+		String username = loginForm.getUsername();
+		String password = loginForm.getPassword();
+		
+		if ("".equals(username) || "".equals(password)) {
+			errors.setCssClass("loginerror");
+			errors.setErrorMessage("Invalid Username or Password.");
+			view = new ModelAndView("views/login/login.jsp", "errors", errors);
+			logger.debug("LoginController: doLogin: Username or password was blank. Sending user to login.");
+		} else {
+			view = new ModelAndView("views/login/success.jsp", "loginForm", loginForm);
+			logger.debug("LoginController: doLogin: Username or password entered. Sending user to success page.");
+		}		
+		
 		logger.debug("LoginController: doLogin: End");
 		return view;
 	}
