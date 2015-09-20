@@ -2,10 +2,12 @@ package ca.owenpeterson.loginapp.service;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Component;
 
 import ca.owenpeterson.loginapp.models.AuthenticatedUser;
 import ca.owenpeterson.loginapp.models.Credentials;
 
+@Component
 public class CredentialService {
 
 	private static final Logger logger = LogManager.getLogger(CredentialService.class.getName());

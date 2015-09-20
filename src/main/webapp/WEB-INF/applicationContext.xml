@@ -22,5 +22,6 @@
     </beans:bean> 
      
     <context:component-scan base-package="ca.owenpeterson.loginapp.controllers" />
+    <context:component-scan base-package="ca.owenpeterson.loginapp.service" />
     
 </beans:beans>
