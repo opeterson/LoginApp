@@ -18,7 +18,31 @@ body {
 
 form {
 	width: 400px;
+	margin-top: 50px;
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
+}
+
+.field label {
+	width: 100px;
+	margin-right: 10px;
+	margin-top: 10px;
+}
+
+.field input {
+	width: 200px;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+.formbutton {
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.formbutton input {
+	width: 75px;
 }

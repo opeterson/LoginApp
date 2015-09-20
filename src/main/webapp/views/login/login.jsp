@@ -11,15 +11,15 @@
 </head>
 <body>
 <form:form commandName="loginForm" action="login" method="post">
-	<div>
+	<div class="field">
 		<label for="username">Username: </label>
 		<form:input path="username" id="username" />
 	</div>
-	<div>
+	<div class="field">
 		<label for="password">Password: </label>
 		<form:password path="password" id="password" />
 	</div>
-	<div>
+	<div class="formbutton">
 		<input type="submit" value="Login!" />
 	</div>
 </form:form>
