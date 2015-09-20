@@ -10,7 +10,7 @@ import ca.owenpeterson.loginapp.models.Credentials;
 @Component
 public class CredentialService {
 
-	private static final Logger logger = LogManager.getLogger(CredentialService.class.getName());
+	private static final Logger logger = LogManager.getLogger(CredentialService.class);
 	
 	public AuthenticatedUser authenticateUser(Credentials credentials) throws IllegalArgumentException {
 		if (null ==  credentials || null == credentials.getUsername() || null == credentials.getPassword()) {
@@ -21,7 +21,7 @@ public class CredentialService {
 		if ("oapdev".equals(credentials.getUsername()) && "qwerty123".equals(credentials.getPassword())) {
 			user.setUsername("oapdev");
 			user.setEmail("oapdev@oapdev.ca");
-			logger.debug("CredentialService: authenticateUser: User logged in with valid credentials");
+			logger.debug("authenticateUser: User logged in with valid credentials");
 		}
 	
 		return user;

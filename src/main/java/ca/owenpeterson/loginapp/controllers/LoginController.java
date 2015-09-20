@@ -21,7 +21,7 @@ import ca.owenpeterson.loginapp.service.CredentialService;
 @Controller
 public class LoginController {
 	
-	Logger logger = LogManager.getLogger(LoginController.class);
+	private static final Logger logger = LogManager.getLogger(LoginController.class);
 	
 	@Autowired
 	private CredentialService credentialService;
@@ -31,30 +31,30 @@ public class LoginController {
 
 	@ModelAttribute("loginForm")
 	public LoginForm getForm() {
-		logger.debug("LoginController: getForm: Begin/End");
+		logger.debug("getForm: Begin/End");
 		return new LoginForm();
 	}
 	
 	@ModelAttribute("errors")
 	public LoginError getErrors() {
-		logger.debug("LoginController: getErrors: Begin/End");
+		logger.debug("getErrors: Begin/End");
 		return new LoginError();
 	}
 		
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody ModelAndView getView(@ModelAttribute("errors") LoginError errors) {
-		logger.debug("LoginController: getView: Begin");
+		logger.debug("getView: Begin");
 		ModelAndView view = new ModelAndView(LOGIN, "errors", errors);
-		logger.debug("LoginController: getView: End");
+		logger.debug("getView: End");
 		return view;
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public @ResponseBody ModelAndView doLogin(@ModelAttribute("loginForm") LoginForm loginForm, @ModelAttribute("errors") LoginError errors) {
-		logger.debug("LoginController: doLogin: Begin");
-		logger.debug("LoginController: doLogin: User logged in with username: " + loginForm.getUsername());
-		logger.debug("LoginController: doLogin: User logged in with password: " + loginForm.getPassword());
+		logger.debug("doLogin: Begin");
+		logger.debug("doLogin: User logged in with username: " + loginForm.getUsername());
+		logger.debug("doLogin: User logged in with password: " + loginForm.getPassword());
 		
 		ModelAndView view = null;
 		String username = loginForm.getUsername();
@@ -73,14 +73,14 @@ public class LoginController {
 			}
 		}		
 		
-		logger.debug("LoginController: doLogin: End");
+		logger.debug("doLogin: End");
 		return view;
 	}
 
 	private ModelAndView handleLoginSuccess(LoginForm loginForm) {
 		ModelAndView view;
 		view = new ModelAndView(SUCCESS, "loginForm", loginForm);
-		logger.debug("LoginController: doLogin: Username or password entered. Sending user to success page.");
+		logger.debug("doLogin: Username or password entered. Sending user to success page.");
 		return view;
 	}
 
@@ -89,7 +89,7 @@ public class LoginController {
 		errors.setCssClass("loginerror");
 		errors.setErrorMessage("Invalid Username or Password.");
 		view = new ModelAndView(LOGIN, "errors", errors);
-		logger.debug("LoginController: doLogin: Username or password was blank. Sending user to login.");
+		logger.debug("doLogin: Username or password was invalid. Sending user to login.");
 		return view;
 	}
 }
