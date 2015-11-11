@@ -3,6 +3,8 @@ package ca.owenpeterson.loginapp.models;
 import java.io.Serializable;
 
 public class Credentials implements Serializable {
+
+	private static final long serialVersionUID = -3104203831995159027L;
 	private String username;
 	private String password;
 		
