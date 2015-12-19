@@ -33,6 +33,13 @@
 		<input type="submit" value="Login!" />
 	</div>
 </form:form>
+<div id="linkbar">
+	<ul class="links">
+		<li>
+			<a href="/createaccount">Create an Account</a>
+		</li>
+	</ul>
+</div>
 
 </body>
 </html>
