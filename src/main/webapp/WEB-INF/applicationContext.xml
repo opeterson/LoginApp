@@ -17,11 +17,17 @@
             </beans:list>
         </beans:property>
     </beans:bean>
-     
+    
+    <beans:bean id="messageSource"
+        class="org.springframework.context.support.ResourceBundleMessageSource">
+        <beans:property name="basename" value="properties/validation" />
+    </beans:bean>
+    
     <beans:bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
     </beans:bean> 
      
     <context:component-scan base-package="ca.owenpeterson.loginapp.controllers" />
+    <context:component-scan base-package="ca.owenpeterson.loginapp.validators" />
     <context:component-scan base-package="ca.owenpeterson.loginapp.service" />
     
 </beans:beans>

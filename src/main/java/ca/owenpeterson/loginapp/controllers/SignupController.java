@@ -2,8 +2,15 @@ package ca.owenpeterson.loginapp.controllers;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import ca.owenpeterson.loginapp.models.signup.SignupError;
 import ca.owenpeterson.loginapp.models.signup.SignupForm;
 
 @Controller
@@ -21,34 +27,48 @@ public class SignupController {
 	private static final String SIGNUP = "/views/signup/signup.jsp";
 	private static final String SUCCESS = "/views/signup/signupSuccess.jsp";
 	
+	@Autowired
+	@Qualifier("signupValidator")
+	private Validator validator;
+	
+	@InitBinder
+	private void initBinder(WebDataBinder binder)
+	{
+		binder.setValidator(validator);
+	}
+	
 	@ModelAttribute("signupForm")
 	public SignupForm getForm() {
 		logger.debug("getForm: Begin/End");
 		return new SignupForm();
 	}
 	
-	@ModelAttribute("errors")
-	public SignupError getErrors() {
-		logger.debug("getErrors: Begin/End");
-		return new SignupError();
-	}
-	
 	@RequestMapping(value="/createaccount", method=RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody ModelAndView getView(@ModelAttribute("errors") SignupError errors) {
+	public @ResponseBody ModelAndView getView() {
 		logger.debug("getView: Begin");
-		ModelAndView view = new ModelAndView(SIGNUP, "errors", errors);
+		ModelAndView view = new ModelAndView(SIGNUP);
 		logger.debug("getView: End");
 		return view;
 	}
 	
 	@RequestMapping(value="/signup", method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody ModelAndView doSignup(@ModelAttribute("signupForm") SignupForm signupForm, @ModelAttribute("errors") SignupError errors)
+	public @ResponseBody ModelAndView doSignup(@Validated @ModelAttribute("signupForm") SignupForm signupForm, BindingResult result)
 	{
 		logger.debug("doSignup: begin");
 		ModelAndView view = null;
-		view = new ModelAndView(SUCCESS, "errors", errors);
+		if (result.hasErrors())
+		{
+			view = new ModelAndView(SIGNUP);
+		}
+		else
+		{
+			logger.debug(signupForm.getUsername());
+			logger.debug(signupForm.getPassword());
+			view = new ModelAndView(SUCCESS);
+		}
+		
 		logger.debug("doSignup: end");
 		return view;
 	}

@@ -14,6 +14,7 @@
 	<div class="field">
 		<label for="username">Username: </label>
 		<form:input path="username" id="username" />
+		<form:errors path="username"></form:errors>
 	</div>
 	<div class="field">
 		<label for="email">Email: </label>
