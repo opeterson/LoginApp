@@ -30,7 +30,7 @@
 		<form:password path="password" id="password" />
 	</div>
 	<div class="formbutton">
-		<input type="submit" value="Login!" />
+		<input type="submit" value="Log In" />
 	</div>
 </form:form>
 <div id="linkbar">
@@ -40,6 +40,5 @@
 		</li>
 	</ul>
 </div>
-
 </body>
 </html>

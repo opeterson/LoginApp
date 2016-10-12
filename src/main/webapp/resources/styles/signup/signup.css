@@ -1,0 +1,52 @@
+@CHARSET "UTF-8";
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+form {
+	width: 400px;
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.field {
+	text-align:-webkit-right
+}
+
+.field label {
+	width: 100px;
+	margin-right: 10px;
+	margin-top: 10px;
+}
+
+.field input {
+	width: 200px;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+.formbutton {
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.formbutton input {
+	width: 150px;
+}
