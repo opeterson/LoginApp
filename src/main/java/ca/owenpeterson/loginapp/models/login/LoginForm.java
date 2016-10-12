@@ -1,4 +1,4 @@
-package ca.owenpeterson.loginapp.models;
+package ca.owenpeterson.loginapp.models.login;
 
 public class LoginForm {
 	

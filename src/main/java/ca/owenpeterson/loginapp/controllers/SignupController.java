@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import ca.owenpeterson.loginapp.models.LoginError;
-import ca.owenpeterson.loginapp.models.LoginForm;
 import ca.owenpeterson.loginapp.models.signup.SignupError;
 import ca.owenpeterson.loginapp.models.signup.SignupForm;
 

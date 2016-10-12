@@ -14,8 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ca.owenpeterson.loginapp.models.AuthenticatedUser;
 import ca.owenpeterson.loginapp.models.Credentials;
-import ca.owenpeterson.loginapp.models.LoginError;
-import ca.owenpeterson.loginapp.models.LoginForm;
+import ca.owenpeterson.loginapp.models.login.LoginError;
+import ca.owenpeterson.loginapp.models.login.LoginForm;
 import ca.owenpeterson.loginapp.service.CredentialService;
 
 @Controller
