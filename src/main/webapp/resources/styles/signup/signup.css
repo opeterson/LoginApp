@@ -25,19 +25,23 @@ form {
 }
 
 .field {
-	text-align:-webkit-right
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
 }
 
 .field label {
 	width: 100px;
 	margin-right: 10px;
 	margin-top: 10px;
+	text-align:-webkit-right
 }
 
 .field input {
 	width: 200px;
 	margin-left: 10px;
 	margin-top: 10px;
+	text-align:-webkit-right
 }
 
 .formbutton {
@@ -49,4 +53,11 @@ form {
 
 .formbutton input {
 	width: 150px;
+}
+
+.error {
+	color: red;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
 }

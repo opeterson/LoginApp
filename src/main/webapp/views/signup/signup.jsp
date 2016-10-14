@@ -14,19 +14,30 @@
 	<div class="field">
 		<label for="username">Username: </label>
 		<form:input path="username" id="username" />
-		<form:errors path="username"></form:errors>
+	</div>
+	<div>
+		<form:errors class="error" path="username"></form:errors>
 	</div>
 	<div class="field">
 		<label for="email">Email: </label>
 		<form:input path="email" id="email" />
 	</div>
+	<div>
+		<form:errors class="error" path="email"></form:errors>
+	</div>
 	<div class="field">
 		<label for="password">Password: </label>
 		<form:password path="password" id="password" />
 	</div>
+	<div>
+		<form:errors class="error" path="password"></form:errors>
+	</div>
 	<div class="field">
 		<label for="confirmPassword">Confirm Password: </label>
 		<form:password path="confirmPassword" id="confirmPassword" />
+	</div>
+	<div>
+		<form:errors class="error" path="confirmPassword"></form:errors>
 	</div>
 	<div class="formbutton">
 		<input type="submit" value="Create My Account" />
