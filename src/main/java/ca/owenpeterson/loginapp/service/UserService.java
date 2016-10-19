@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import ca.owenpeterson.loginapp.models.UserDto;
 
 /**
- * TODO: Have this class post to the UserService web service to create a new user. 
+ * TODO: Have this class post to http://localhost:8080/userservice/user/create to create a new user. 
  * @author owen
  *
  */
