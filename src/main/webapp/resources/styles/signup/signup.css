@@ -17,31 +17,32 @@ body {
 }
 
 form {
-	width: 400px;
+	width: 600px;
 	margin-top: 50px;
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
 }
 
-.field {
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
-}
-
 .field label {
-	width: 100px;
+	display: inline-block;
+    float: left;
+    clear: left;
+	width: 200px;
 	margin-right: 10px;
 	margin-top: 10px;
+	margin-bottom: 10px;
 	text-align:-webkit-right
 }
 
 .field input {
+	display: inline-block;
+	float: left;
+	clear: right;
 	width: 200px;
 	margin-left: 10px;
 	margin-top: 10px;
-	text-align:-webkit-right
+	margin-bottom: 10px;
 }
 
 .formbutton {
@@ -56,8 +57,21 @@ form {
 }
 
 .error {
+	margin-top: 10px;
 	color: red;
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+#buttonbar {
+	margin-top: 10px;
+}
+
+.clear {
+	clear: both;
+}
+
+#signupsuccess {
+	margin-top: 50px;
 }

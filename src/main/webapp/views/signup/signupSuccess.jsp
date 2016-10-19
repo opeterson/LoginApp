@@ -10,6 +10,10 @@
 <link href="<c:url value="/resources/styles/signup/signup.css" />" rel="stylesheet" type="text/css">
 </head>
 <body>
-<h1>Signup Success!</h1>
+	<div id="signupsuccess">
+		<h2>Your account has been created successfully!</h2>
+		<p>Your username is <c:out value="${signupForm.username}" />.</p>
+		<p>We've sent a confirmation email to <c:out value="${signupForm.email}" />.</p>
+	</div>
 </body>
 </html>

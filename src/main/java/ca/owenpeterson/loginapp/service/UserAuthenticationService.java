@@ -8,9 +8,9 @@ import ca.owenpeterson.loginapp.models.AuthenticatedUser;
 import ca.owenpeterson.loginapp.models.Credentials;
 
 @Component
-public class CredentialService {
+public class UserAuthenticationService {
 
-	private static final Logger logger = LogManager.getLogger(CredentialService.class);
+	private static final Logger logger = LogManager.getLogger(UserAuthenticationService.class);
 	
 	public AuthenticatedUser authenticateUser(Credentials credentials) throws IllegalArgumentException {
 		if (null ==  credentials || null == credentials.getUsername() || null == credentials.getPassword()) {
@@ -18,6 +18,7 @@ public class CredentialService {
 		}
 		
 		AuthenticatedUser user = new AuthenticatedUser();
+		//TODO: Call Userservice web service to authenticate user.
 		if ("oapdev".equals(credentials.getUsername()) && "qwerty123".equals(credentials.getPassword())) {
 			user.setUsername("oapdev");
 			user.setEmail("oapdev@oapdev.ca");

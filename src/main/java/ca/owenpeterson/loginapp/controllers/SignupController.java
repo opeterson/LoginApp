@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import ca.owenpeterson.loginapp.models.UserDto;
 import ca.owenpeterson.loginapp.models.signup.SignupForm;
+import ca.owenpeterson.loginapp.service.UserService;
 
 @Controller
 public class SignupController {
@@ -26,6 +28,9 @@ public class SignupController {
 	
 	private static final String SIGNUP = "/views/signup/signup.jsp";
 	private static final String SUCCESS = "/views/signup/signupSuccess.jsp";
+	
+	@Autowired
+	private UserService userService;
 	
 	@Autowired
 	@Qualifier("signupValidator")
@@ -64,9 +69,22 @@ public class SignupController {
 		}
 		else
 		{
-			logger.debug(signupForm.getUsername());
-			logger.debug(signupForm.getPassword());
-			view = new ModelAndView(SUCCESS);
+			UserDto user = new UserDto();
+			user.setUsername(signupForm.getUsername());
+			user.setPassword(signupForm.getPassword());
+			user.setEmail(signupForm.getEmail());
+			boolean userCreated = userService.createUser(user);
+			
+			if (userCreated)
+			{
+				signupForm.setPassword("");
+				signupForm.setConfirmPassword("");
+				view = new ModelAndView(SUCCESS, "signupForm", signupForm);
+			}
+			else
+			{
+				view = new ModelAndView(SIGNUP);
+			}
 		}
 		
 		logger.debug("doSignup: end");

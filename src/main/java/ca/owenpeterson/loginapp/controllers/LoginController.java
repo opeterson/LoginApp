@@ -16,7 +16,7 @@ import ca.owenpeterson.loginapp.models.AuthenticatedUser;
 import ca.owenpeterson.loginapp.models.Credentials;
 import ca.owenpeterson.loginapp.models.login.LoginError;
 import ca.owenpeterson.loginapp.models.login.LoginForm;
-import ca.owenpeterson.loginapp.service.CredentialService;
+import ca.owenpeterson.loginapp.service.UserAuthenticationService;
 
 @Controller
 public class LoginController {
@@ -24,7 +24,7 @@ public class LoginController {
 	private static final Logger logger = LogManager.getLogger(LoginController.class);
 	
 	@Autowired
-	private CredentialService credentialService;
+	private UserAuthenticationService authenticationService;
 	
 	private String SUCCESS = "views/login/success.jsp";
 	private String LOGIN = "views/login/login.jsp";
@@ -64,7 +64,7 @@ public class LoginController {
 			view = handleLoginError(errors);
 		} else {
 			Credentials credentials = new Credentials(username, password);
-			AuthenticatedUser user = credentialService.authenticateUser(credentials);
+			AuthenticatedUser user = authenticationService.authenticateUser(credentials);
 			
 			if (null != user.getUsername()) {
 				view = handleLoginSuccess(loginForm);
