@@ -14,6 +14,12 @@
 		<h2>Your account has been created successfully!</h2>
 		<p>Your username is <c:out value="${signupForm.username}" />.</p>
 		<p>We've sent a confirmation email to <c:out value="${signupForm.email}" />.</p>
+		<ul class="links">
+			<li>
+				<a href="/loginapp/login">Click here to go to the Log In page.</a>
+			</li>
+		</ul>		
 	</div>
+	
 </body>
 </html>

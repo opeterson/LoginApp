@@ -1,11 +1,12 @@
 package ca.owenpeterson.loginapp.service;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
+import ca.owenpeterson.loginapp.models.AuthenticatedUser;
 import ca.owenpeterson.loginapp.models.UserDto;
 
 /**
- * TODO: Have this class post to http://localhost:8080/userservice/user/create to create a new user. 
  * @author owen
  *
  */
@@ -14,6 +15,9 @@ public class UserService {
 	
 	public boolean createUser(UserDto newUser)
 	{
-		return newUser.getUsername().equals("owenpeterson");
+		RestTemplate restTemplate = new RestTemplate();
+		AuthenticatedUser createdUser = restTemplate.postForObject(URIConstants.CREATE_USER_URI, newUser, AuthenticatedUser.class);
+		
+		return createdUser.getUsername().equals("iamnewuser");
 	}
 }
