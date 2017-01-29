@@ -83,6 +83,7 @@ public class SignupController {
 			}
 			else
 			{
+				//TODO: Add an error if the user was not created. Probably due to validation, IE already exists.
 				view = new ModelAndView(SIGNUP);
 			}
 		}

@@ -3,9 +3,11 @@ package ca.owenpeterson.loginapp.service;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
 import ca.owenpeterson.loginapp.models.AuthenticatedUser;
 import ca.owenpeterson.loginapp.models.Credentials;
+import ca.owenpeterson.loginapp.models.UserDto;
 
 @Component
 public class UserAuthenticationService {
@@ -18,12 +20,12 @@ public class UserAuthenticationService {
 		}
 		
 		AuthenticatedUser user = new AuthenticatedUser();
-		//TODO: Call Userservice web service to authenticate user.
-		if ("oapdev".equals(credentials.getUsername()) && "qwerty123".equals(credentials.getPassword())) {
-			user.setUsername("oapdev");
-			user.setEmail("oapdev@oapdev.ca");
-			logger.debug("authenticateUser: User logged in with valid credentials");
-		}
+		UserDto userDto = new UserDto();
+		userDto.setUsername(credentials.getUsername());
+		userDto.setPassword(credentials.getPassword());
+		
+		RestTemplate restTemplate = new RestTemplate();
+		user = restTemplate.postForObject(URIConstants.AUTHENTICATE_USER_URI, userDto, AuthenticatedUser.class);
 	
 		return user;
 	}

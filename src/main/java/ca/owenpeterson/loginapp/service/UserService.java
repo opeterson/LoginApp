@@ -18,6 +18,6 @@ public class UserService {
 		RestTemplate restTemplate = new RestTemplate();
 		AuthenticatedUser createdUser = restTemplate.postForObject(URIConstants.CREATE_USER_URI, newUser, AuthenticatedUser.class);
 		
-		return createdUser.getUsername().equals("iamnewuser");
+		return null != createdUser;
 	}
 }
