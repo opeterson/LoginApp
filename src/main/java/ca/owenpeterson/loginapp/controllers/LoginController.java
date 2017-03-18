@@ -21,7 +21,7 @@ import ca.owenpeterson.loginapp.service.UserAuthenticationService;
 @Controller
 public class LoginController {
 	
-	private static final Logger logger = LogManager.getLogger(LoginController.class);
+	static Logger logger = LogManager.getLogger(LoginController.class);
 	
 	@Autowired
 	private UserAuthenticationService authenticationService;

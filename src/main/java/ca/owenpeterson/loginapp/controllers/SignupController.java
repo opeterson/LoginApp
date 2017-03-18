@@ -24,7 +24,8 @@ import ca.owenpeterson.loginapp.service.UserService;
 
 @Controller
 public class SignupController {
-	private static final Logger logger = LogManager.getLogger(SignupController.class);
+	
+	static Logger logger = LogManager.getLogger(SignupController.class);
 	
 	private static final String SIGNUP = "/views/signup/signup.jsp";
 	private static final String SUCCESS = "/views/signup/signupSuccess.jsp";
