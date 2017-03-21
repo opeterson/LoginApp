@@ -1,5 +1,9 @@
 package ca.owenpeterson.loginapp.service;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -15,9 +19,13 @@ public class UserService {
 	
 	public boolean createUser(UserDto newUser)
 	{
-		RestTemplate restTemplate = new RestTemplate();
-		AuthenticatedUser createdUser = restTemplate.postForObject(URIConstants.CREATE_USER_URI, newUser, AuthenticatedUser.class);
+		RestTemplate restTemplate = new RestTemplate();;
+		HttpEntity<UserDto> entity = new HttpEntity<UserDto>(newUser);
 		
-		return null != createdUser;
+		ResponseEntity<AuthenticatedUser> response = restTemplate.exchange(URIConstants.CREATE_USER_URI, HttpMethod.POST, entity, AuthenticatedUser.class);
+		
+		HttpStatus responseCode = response.getStatusCode();
+		
+		return responseCode.equals(HttpStatus.OK);
 	}
 }
