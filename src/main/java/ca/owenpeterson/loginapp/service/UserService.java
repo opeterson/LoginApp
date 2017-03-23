@@ -26,6 +26,6 @@ public class UserService {
 		
 		HttpStatus responseCode = response.getStatusCode();
 		
-		return responseCode.equals(HttpStatus.OK);
+		return responseCode.equals(HttpStatus.CREATED);
 	}
 }
