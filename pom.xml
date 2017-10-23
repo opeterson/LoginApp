@@ -20,6 +20,17 @@
 			</properties>
 		</profile>
 		<profile>
+			<id>dev-win</id>
+			<activation>
+			 <activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<environment>dev-win</environment>
+				<web-dir>web.xml</web-dir>
+				<rp.build.warname>dev-${project.version}</rp.build.warname>
+			</properties>
+		</profile>
+		<profile>
 			<id>qa</id>
 			<properties>
 				<environment>qa</environment>
