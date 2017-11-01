@@ -44,14 +44,16 @@ public class SignupController {
 	}
 	
 	@ModelAttribute("signupForm")
-	public SignupForm getForm() {
+	public SignupForm getForm() 
+	{
 		logger.debug("getForm: Begin/End");
 		return new SignupForm();
 	}
 	
 	@RequestMapping(value="/createaccount", method=RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody ModelAndView getView() {
+	public @ResponseBody ModelAndView getView() 
+	{
 		logger.debug("getView: Begin");
 		ModelAndView view = new ModelAndView(SIGNUP);
 		logger.debug("getView: End");

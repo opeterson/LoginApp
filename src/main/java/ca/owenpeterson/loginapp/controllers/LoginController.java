@@ -30,20 +30,23 @@ public class LoginController {
 	private String LOGIN = "views/login/login.jsp";
 
 	@ModelAttribute("loginForm")
-	public LoginForm getForm() {
+	public LoginForm getForm() 
+	{
 		logger.debug("getForm: Begin/End");
 		return new LoginForm();
 	}
 	
 	@ModelAttribute("errors")
-	public LoginError getErrors() {
+	public LoginError getErrors() 
+	{
 		logger.debug("getErrors: Begin/End");
 		return new LoginError();
 	}
 		
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody ModelAndView getView(@ModelAttribute("errors") LoginError errors) {
+	public @ResponseBody ModelAndView getView(@ModelAttribute("errors") LoginError errors) 
+	{
 		logger.debug("getView: Begin");
 		ModelAndView view = new ModelAndView(LOGIN, "errors", errors);
 		logger.debug("getView: End");
@@ -51,7 +54,8 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public @ResponseBody ModelAndView doLogin(@ModelAttribute("loginForm") LoginForm loginForm, @ModelAttribute("errors") LoginError errors) {
+	public @ResponseBody ModelAndView doLogin(@ModelAttribute("loginForm") LoginForm loginForm, @ModelAttribute("errors") LoginError errors) 
+	{
 		logger.debug("doLogin: Begin");
 		logger.debug("doLogin: User logged in with username: " + loginForm.getUsername());
 		logger.debug("doLogin: User logged in with password: " + loginForm.getPassword());
@@ -60,15 +64,21 @@ public class LoginController {
 		String username = loginForm.getUsername();
 		String password = loginForm.getPassword();
 		
-		if ("".equals(username) || "".equals(password)) {
+		if ("".equals(username) || "".equals(password)) 
+		{
 			view = handleLoginError(errors);
-		} else {
+		} 
+		else 
+		{
 			Credentials credentials = new Credentials(username, password);
 			AuthenticatedUser user = authenticationService.authenticateUser(credentials);
 			
-			if (null != user.getUsername()) {
+			if (null != user.getUsername()) 
+			{
 				view = handleLoginSuccess(loginForm);
-			} else {
+			}
+			else 
+			{
 				view = handleLoginError(errors);
 			}
 		}		
@@ -77,14 +87,16 @@ public class LoginController {
 		return view;
 	}
 
-	private ModelAndView handleLoginSuccess(LoginForm loginForm) {
+	private ModelAndView handleLoginSuccess(LoginForm loginForm) 
+	{
 		ModelAndView view;
 		view = new ModelAndView(SUCCESS, "loginForm", loginForm);
 		logger.debug("doLogin: Username or password entered. Sending user to success page.");
 		return view;
 	}
 
-	private ModelAndView handleLoginError(LoginError errors) {
+	private ModelAndView handleLoginError(LoginError errors) 
+	{
 		ModelAndView view;
 		errors.setCssClass("loginerror");
 		errors.setErrorMessage("Invalid Username or Password.");
