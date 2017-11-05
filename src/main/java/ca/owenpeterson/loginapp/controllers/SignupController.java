@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.Validator;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import ca.owenpeterson.loginapp.models.AuthenticatedUser;
 import ca.owenpeterson.loginapp.models.UserDto;
 import ca.owenpeterson.loginapp.models.signup.SignupForm;
 import ca.owenpeterson.loginapp.service.UserService;
@@ -76,7 +78,8 @@ public class SignupController {
 			user.setUsername(signupForm.getUsername());
 			user.setPassword(signupForm.getPassword());
 			user.setEmail(signupForm.getEmail());
-			boolean userCreated = userService.createUser(user);
+			AuthenticatedUser createdUser = userService.createUser(user);
+			boolean userCreated = createdUser.getHttpStatus() == HttpStatus.CREATED;
 			
 			if (userCreated)
 			{
@@ -86,7 +89,8 @@ public class SignupController {
 			}
 			else
 			{
-				//TODO: Add an error if the user was not created. Probably due to validation, IE already exists.
+				//TODO: Still need to figure out which error actually happened.
+				result.addError(new FieldError("username", "username", createdUser.getErrorMessage()));
 				view = new ModelAndView(SIGNUP);
 			}
 		}

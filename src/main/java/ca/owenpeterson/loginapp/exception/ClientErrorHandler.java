@@ -25,9 +25,6 @@ public class ClientErrorHandler implements ResponseErrorHandler
 	@Override
 	public void handleError(ClientHttpResponse response) throws IOException
 	{
-		if (response.getStatusCode() == HttpStatus.CONFLICT)
-		{
-			//throw new UserAlreadyExistsException("Username or Email is already in use.");
-		}		
+		//response.close();
 	}
 }
