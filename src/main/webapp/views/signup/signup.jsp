@@ -10,7 +10,7 @@
 	<link href="<c:url value="/resources/styles/signup/signup.css" />" rel="stylesheet" type="text/css">
 	</head>
 	<body>
-		<form:form commandName="signupForm" action="signup" method="post">
+		<form:form modelAttribute="signupForm" action="signup" method="post">
 			<div class="field">
 				<label for="username">Username: </label>
 				<form:input path="username" id="username" />

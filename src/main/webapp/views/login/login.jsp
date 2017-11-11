@@ -10,7 +10,7 @@
 <link href="<c:url value="/resources/styles/login/login.css" />" rel="stylesheet" type="text/css">
 </head>
 <body>
-<form:form commandName="loginForm" action="login" method="post">
+<form:form modelAttribute="loginForm" action="login" method="post">
 	<div class="infomessage">
 		<c:choose>
 		    <c:when test="${null == errors.errorMessage}">
