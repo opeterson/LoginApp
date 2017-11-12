@@ -2,7 +2,7 @@ package ca.owenpeterson.loginapp.models;
 
 import java.io.Serializable;
 
-public class AuthenticatedUser extends RestEntity implements Serializable {
+public class AuthenticatedUser implements Serializable {
 
 	private static final long serialVersionUID = 2733978423374274037L;
 	private String username;

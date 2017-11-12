@@ -28,7 +28,7 @@
 	</beans:bean>
     
     <beans:bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-    </beans:bean> 
+    </beans:bean>
      
     <context:component-scan base-package="ca.owenpeterson.loginapp.controllers" />
     <context:component-scan base-package="ca.owenpeterson.loginapp.validators" />

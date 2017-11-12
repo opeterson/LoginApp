@@ -78,8 +78,10 @@ public class SignupController {
 			user.setUsername(signupForm.getUsername());
 			user.setPassword(signupForm.getPassword());
 			user.setEmail(signupForm.getEmail());
+			
+			//TODO: handle exceptions from the userservice properly. 
 			AuthenticatedUser createdUser = userService.createUser(user);
-			boolean userCreated = createdUser.getHttpStatus() == HttpStatus.CREATED;
+			boolean userCreated = null != createdUser.getUsername();
 			
 			if (userCreated)
 			{
@@ -90,7 +92,7 @@ public class SignupController {
 			else
 			{
 				//TODO: Still need to figure out which error actually happened.
-				result.addError(new FieldError("username", "username", createdUser.getErrorMessage()));
+				//result.addError(new FieldError("username", "username", createdUser.getErrorMessage()));
 				view = new ModelAndView(SIGNUP);
 			}
 		}

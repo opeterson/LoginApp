@@ -19,7 +19,6 @@
 				<a href="/loginapp/login">Click here to go to the Log In page.</a>
 			</li>
 		</ul>		
-	</div>
-	
+	</div>	
 </body>
 </html>

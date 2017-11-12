@@ -6,8 +6,7 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context-3.1.xsd">
     
-  <bean id="contentNegotiationManager"
-             class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+  <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
     <property name="favorPathExtension" value="false" />
     <property name="favorParameter" value="true" />
     <property name="parameterName" value="mediaType" />
