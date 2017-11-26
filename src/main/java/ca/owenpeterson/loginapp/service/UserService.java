@@ -27,7 +27,14 @@ public class UserService {
 		
 		//TODO: Figure out how to get different responses from a service. If there is an error, and Userservice returns an error response,
 		//this still creates an AuthenticatedUser with null properties. This won't work for proper error handling.
-		response = restTemplate.exchange(URIConstants.CREATE_USER_URI, HttpMethod.POST, entity, AuthenticatedUser.class);
+		try
+		{
+			response = restTemplate.exchange(URIConstants.CREATE_USER_URI, HttpMethod.POST, entity, AuthenticatedUser.class);
+		}
+		catch(Exception e)
+		{
+			throw e;
+		}
 		
 		AuthenticatedUser user = response.getBody();
 		

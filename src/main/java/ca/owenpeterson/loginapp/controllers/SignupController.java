@@ -81,7 +81,7 @@ public class SignupController {
 			
 			//TODO: handle exceptions from the userservice properly. 
 			AuthenticatedUser createdUser = userService.createUser(user);
-			boolean userCreated = null != createdUser.getUsername();
+			boolean userCreated = null != createdUser && null != createdUser.getUsername();
 			
 			if (userCreated)
 			{
