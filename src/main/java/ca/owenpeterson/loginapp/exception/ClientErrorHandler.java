@@ -35,5 +35,7 @@ public class ClientErrorHandler implements ResponseErrorHandler
 		{
 			LOGGER.debug(responseString);
 		}
+		
+		//TODO: Look at the HttpStatus. If its one that I'm expecting, parse it, look at the error code and throw an appropriate exception.
 	}
 }
