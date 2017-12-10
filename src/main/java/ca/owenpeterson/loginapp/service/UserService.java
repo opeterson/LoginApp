@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import ca.owenpeterson.loginapp.exception.ClientErrorHandler;
+import ca.owenpeterson.loginapp.exception.RestTemplateErrorHandler;
 import ca.owenpeterson.loginapp.models.AuthenticatedUser;
 import ca.owenpeterson.loginapp.models.UserDto;
 
@@ -20,7 +20,7 @@ public class UserService {
 	public AuthenticatedUser createUser(UserDto newUser)
 	{
 		RestTemplate restTemplate = new RestTemplate();
-		ClientErrorHandler clientErrorHandler = new ClientErrorHandler();
+		RestTemplateErrorHandler clientErrorHandler = new RestTemplateErrorHandler();
 		restTemplate.setErrorHandler(clientErrorHandler);
 		HttpEntity<UserDto> entity = new HttpEntity<UserDto>(newUser);
 		ResponseEntity<AuthenticatedUser> response = null;

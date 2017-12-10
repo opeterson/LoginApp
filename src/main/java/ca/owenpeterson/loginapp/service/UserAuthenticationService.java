@@ -10,9 +10,9 @@ import ca.owenpeterson.loginapp.models.Credentials;
 import ca.owenpeterson.loginapp.models.UserDto;
 
 @Component
-public class UserAuthenticationService {
-
-	private static final Logger logger = LogManager.getLogger(UserAuthenticationService.class);
+public class UserAuthenticationService 
+{
+	private static final Logger LOGGER = LogManager.getLogger(UserAuthenticationService.class);
 	
 	public AuthenticatedUser authenticateUser(Credentials credentials) throws IllegalArgumentException {
 		if (null ==  credentials || null == credentials.getUsername() || null == credentials.getPassword()) {
@@ -27,6 +27,7 @@ public class UserAuthenticationService {
 		RestTemplate restTemplate = new RestTemplate();
 		user = restTemplate.postForObject(URIConstants.AUTHENTICATE_USER_URI, userDto, AuthenticatedUser.class);
 	
+		LOGGER.debug("User was authenticated successfully. Returning user.");
 		return user;
 	}
 }
