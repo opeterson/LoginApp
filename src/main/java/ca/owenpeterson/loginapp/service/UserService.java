@@ -1,5 +1,6 @@
 package ca.owenpeterson.loginapp.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -15,26 +16,19 @@ import ca.owenpeterson.loginapp.models.UserDto;
  *
  */
 @Component
-public class UserService {
+public class UserService 
+{
+	@Autowired
+	private RestTemplateErrorHandler restTemplateErrorHandler;
 	
 	public AuthenticatedUser createUser(UserDto newUser)
 	{
 		RestTemplate restTemplate = new RestTemplate();
-		RestTemplateErrorHandler clientErrorHandler = new RestTemplateErrorHandler();
-		restTemplate.setErrorHandler(clientErrorHandler);
+		restTemplate.setErrorHandler(restTemplateErrorHandler);
 		HttpEntity<UserDto> entity = new HttpEntity<UserDto>(newUser);
 		ResponseEntity<AuthenticatedUser> response = null;
 		
-		//TODO: Figure out how to get different responses from a service. If there is an error, and Userservice returns an error response,
-		//this still creates an AuthenticatedUser with null properties. This won't work for proper error handling.
-		try
-		{
-			response = restTemplate.exchange(URIConstants.CREATE_USER_URI, HttpMethod.POST, entity, AuthenticatedUser.class);
-		}
-		catch(Exception e)
-		{
-			throw e;
-		}
+		response = restTemplate.exchange(URIConstants.CREATE_USER_URI, HttpMethod.POST, entity, AuthenticatedUser.class);
 		
 		AuthenticatedUser user = response.getBody();
 		

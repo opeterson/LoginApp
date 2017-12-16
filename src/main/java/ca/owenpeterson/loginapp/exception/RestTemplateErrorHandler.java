@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatus.Series;
 import org.springframework.http.client.ClientHttpResponse;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.ResponseErrorHandler;
 
+@Component
 public class RestTemplateErrorHandler implements ResponseErrorHandler
 {
 	private static final Logger LOGGER = LogManager.getLogger(RestTemplateErrorHandler.class);

@@ -77,8 +77,7 @@ public class SignupController {
 			user.setUsername(signupForm.getUsername());
 			user.setPassword(signupForm.getPassword());
 			user.setEmail(signupForm.getEmail());
-			
-			//TODO: handle exceptions from the userservice properly. 
+			 
 			AuthenticatedUser createdUser = userService.createUser(user);
 			boolean userCreated = null != createdUser && null != createdUser.getUsername();
 			

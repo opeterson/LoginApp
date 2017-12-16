@@ -21,15 +21,16 @@
 		</appender>
 	</appenders>
 	<loggers>
-	   <logger name="org.springframework">
-      <appender-ref ref="Console" level="${log4j.springframework.console.level}"/>
-      <appender-ref ref="AsyncFile" level="${log4j.springframework.file.level}" />
-    </logger>
-    <logger name="ca.owenpeterson.loginapp">
-      <appender-ref ref="AsyncFile" level="${log4j.loginapp.file.level}" />
-    </logger>
-		<root level="${log4j.root.console.level}">
-			<appender-ref ref="Console"  />
-		</root>
+		<logger name="org.springframework">
+      		<appender-ref ref="Console" level="${log4j.springframework.console.level}"/>
+      		<appender-ref ref="AsyncFile" level="${log4j.springframework.file.level}" />
+    	</logger>
+    	<logger name="ca.owenpeterson.loginapp">
+    		<appender-ref ref="Console" level="${log4j.loginapp.console.level}" />
+      		<appender-ref ref="AsyncFile" level="${log4j.loginapp.file.level}" />
+    	</logger>
+			<root level="${log4j.root.console.level}">
+				<appender-ref ref="Console"  />
+			</root>
 	</loggers>
 </configuration>
