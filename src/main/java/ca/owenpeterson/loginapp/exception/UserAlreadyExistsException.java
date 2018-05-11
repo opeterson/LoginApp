@@ -1,6 +1,6 @@
 package ca.owenpeterson.loginapp.exception;
 
-public class UserAlreadyExistsException extends Exception 
+public class UserAlreadyExistsException extends ClientException 
 {
 	private static final long serialVersionUID = -2870453151940691207L;
 	

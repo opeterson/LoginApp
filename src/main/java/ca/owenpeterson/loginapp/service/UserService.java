@@ -1,5 +1,7 @@
 package ca.owenpeterson.loginapp.service;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -18,6 +20,8 @@ import ca.owenpeterson.loginapp.models.UserDto;
 @Component
 public class UserService 
 {
+	static Logger logger = LogManager.getLogger(UserService.class);
+			
 	@Autowired
 	private RestTemplateErrorHandler restTemplateErrorHandler;
 	

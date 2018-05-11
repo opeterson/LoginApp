@@ -36,7 +36,7 @@
 <div id="linkbar">
 	<ul class="links">
 		<li>
-			<a href="/loginapp/createaccount">Create an Account</a>
+			<a href="/loginapp/signup">Create an Account</a>
 		</li>
 	</ul>
 </div>

@@ -6,5 +6,5 @@ import org.springframework.http.client.ClientHttpResponse;
 
 public interface ErrorHandler 
 {
-	public void handleError(ClientHttpResponse response) throws IOException;
+	public void handleError(ClientHttpResponse response) throws IOException, ClientException;
 }
