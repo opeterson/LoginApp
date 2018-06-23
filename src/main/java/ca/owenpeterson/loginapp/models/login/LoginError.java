@@ -1,7 +1,7 @@
 package ca.owenpeterson.loginapp.models.login;
 
-public class LoginError {
-
+public class LoginError 
+{
 	private String errorMessage;
 	private String cssClass;
 			
@@ -35,6 +35,4 @@ public class LoginError {
 	{
 		this.cssClass = cssClass;
 	}
-	
-	
 }

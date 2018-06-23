@@ -11,6 +11,13 @@
 	</head>
 	<body>
 		<form:form modelAttribute="signupForm" action="signup" method="post">
+			<div id="messages-container">
+				<div id="error-messages">
+					<c:forEach items="${signupForm.signupErrors}" var="error">
+						<p class="${error.cssClass}">${error.errorMessage}</p>
+					</c:forEach>
+				</div>	
+			</div>
 			<div class="field">
 				<label for="username">Username: </label>
 				<form:input path="username" id="username" />

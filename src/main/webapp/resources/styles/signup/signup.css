@@ -84,3 +84,11 @@ form {
 .links a {
 	text-decoration: none;
 }
+
+#messages-container {
+	margin-bottom: 20px;
+}
+
+.signuperror {
+	color: red;
+}

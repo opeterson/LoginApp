@@ -1,10 +1,7 @@
 package ca.owenpeterson.loginapp.controllers;
 
-import java.util.Enumeration;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,15 +20,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.context.request.NativeWebRequest;
-import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.FlashMap;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.support.SessionFlashMapManager;
 
+import ca.owenpeterson.loginapp.exception.EmailAlreadyInUseException;
 import ca.owenpeterson.loginapp.exception.UserAlreadyExistsException;
 import ca.owenpeterson.loginapp.models.AuthenticatedUser;
 import ca.owenpeterson.loginapp.models.UserDto;
+import ca.owenpeterson.loginapp.models.signup.SignupError;
 import ca.owenpeterson.loginapp.models.signup.SignupForm;
 import ca.owenpeterson.loginapp.service.UserService;
 
@@ -102,9 +97,7 @@ public class SignupController {
 			}
 			else
 			{
-				//TODO: Still need to figure out which error actually happened.
-				//result.addError(new FieldError("username", "username", createdUser.getErrorMessage()));
-				view = new ModelAndView(SIGNUP);
+				view = new ModelAndView(ERROR);
 			}
 		}
 		
@@ -113,25 +106,30 @@ public class SignupController {
 	}
 	
 	@ExceptionHandler(UserAlreadyExistsException.class)
-	private ModelAndView handleUserAlreadyExistsException(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+	private ModelAndView handleUserAlreadyExistsException(UserAlreadyExistsException e)
 	{
-		FlashMap flashMap = new SessionFlashMapManager().retrieveAndUpdate(request, response);
-		logger.debug("================= FLASH MAP ==================");
-		logger.debug(flashMap);
-		
-		SignupForm signupForm = null;
-		
-		if (flashMap != null)
-		{
-			signupForm = (SignupForm) flashMap.get("signupForm");
-			logger.debug(signupForm);
-		}
-		
-		if (null == signupForm)
-		{
-			signupForm = new SignupForm();
-		}
-		
+		SignupForm signupForm = new SignupForm();
+		List<SignupError> signupErrors = createErrorsForException(e);
+		signupForm.setSignupErrors(signupErrors);
 		return new ModelAndView(SIGNUP, "signupForm", signupForm);
+	}
+	
+	@ExceptionHandler(EmailAlreadyInUseException.class)
+	private ModelAndView handleEmailAlreadyInUseException(EmailAlreadyInUseException e)
+	{
+		SignupForm signupForm = new SignupForm();
+		List<SignupError> signupErrors = createErrorsForException(e);
+		signupForm.setSignupErrors(signupErrors);
+		return new ModelAndView(SIGNUP, "signupForm", signupForm);
+	}
+	
+	private List<SignupError> createErrorsForException(Exception e)
+	{
+		List<SignupError> signupErrors = new ArrayList<SignupError>();
+		SignupError signupError = new SignupError();
+		signupError.setErrorMessage(e.getMessage());
+		signupError.setCssClass("signuperror");
+		signupErrors.add(signupError);
+		return signupErrors;
 	}
 }
